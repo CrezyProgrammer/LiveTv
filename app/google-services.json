@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "64569163834",
+    "project_id": "live-tv-1baa7",
+    "storage_bucket": "live-tv-1baa7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:64569163834:android:2ce6cf378127733bacf503",
+        "android_client_info": {
+          "package_name": "com.live.tv"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "64569163834-bsf0et3unnabpvu53f8ch99b8uhurr1g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBDDoiPu1WCKvUyIaRVKPVDzFGowayA3GI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "64569163834-bsf0et3unnabpvu53f8ch99b8uhurr1g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
