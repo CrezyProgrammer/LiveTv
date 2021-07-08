@@ -34,15 +34,7 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
 
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
-val preferences=getSharedPreferences("location", MODE_PRIVATE)
-        if (preferences.getBoolean("location",false)){
-            Handler().postDelayed({
-               checkLink()
 
-            }, 2000)
-
-        }
-        else
         getLastLocation()
     }
 
@@ -92,10 +84,14 @@ val preferences=getSharedPreferences("location", MODE_PRIVATE)
         override fun onLocationResult(locationResult: LocationResult) {
             var location: Location = locationResult.lastLocation
             val gcd = Geocoder(applicationContext, Locale.getDefault())
-            var Adress = gcd.getFromLocation(location.latitude, location.longitude, 1)
-            //   val result = Adress[1].locality
-            val add =Adress[0].featureName+","+Adress[0].subAdminArea+","+Adress[0].adminArea+","+Adress[0].countryCode
-          addlocation(add)
+            try {
+                var Adress = gcd.getFromLocation(location.latitude, location.longitude, 1)
+                //   val result = Adress[1].locality
+                val add =Adress[0].featureName+","+Adress[0].subAdminArea+","+Adress[0].adminArea+","+Adress[0].countryCode
+                addlocation(add)
+            } catch (e: Exception) {
+                Log.i("123321", "onLocationResult: "+e.message)
+            }
         }
     }
 
@@ -154,9 +150,7 @@ val preferences=getSharedPreferences("location", MODE_PRIVATE)
         val ref=FirebaseDatabase.getInstance().getReference("location")
         ref.push().setValue(add).addOnCompleteListener {
             if (it.isSuccessful){
-                val editor=getSharedPreferences("location", MODE_PRIVATE).edit()
-                editor.putBoolean("location",true)
-                editor.apply()
+
                         checkLink()
                         
             }

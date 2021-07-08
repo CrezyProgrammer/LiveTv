@@ -18,6 +18,10 @@ import com.google.android.exoplayer2.trackselection.TrackSelector
 import com.google.android.exoplayer2.upstream.BandwidthMeter
 import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter
 import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory
+import com.google.android.exoplayer2.upstream.cache.CacheDataSource
+import com.google.android.exoplayer2.upstream.cache.CacheDataSourceFactory
+import com.google.android.exoplayer2.upstream.cache.NoOpCacheEvictor
+import com.google.android.exoplayer2.upstream.cache.SimpleCache
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -42,6 +46,8 @@ class MainActivity : AppCompatActivity() {
 videoURL= intent.getStringExtra("link").toString()
 
 
+
+
             // bandwisthmeter is used for
             // getting default bandwidth
             val bandwidthMeter: BandwidthMeter = DefaultBandwidthMeter()
@@ -58,16 +64,7 @@ videoURL= intent.getStringExtra("link").toString()
             // and parsing its video uri.
             val videouri = Uri.parse(videoURL)
 
-            // we are creating a variable for datasource factory
-            // and setting its user agent as 'exoplayer_view'
-            val dataSourceFactory = DefaultHttpDataSourceFactory("exoplayer_video")
 
-            // we are creating a variable for extractor factory
-            // and setting it to default extractor factory.
-            val extractorsFactory: ExtractorsFactory = DefaultExtractorsFactory()
-
-            // we are creating a media source with above variables
-            // and passing our event handler as null,
             val mediaSource: MediaSource =
                HlsMediaSource.Factory(DefaultHttpDataSourceFactory("userAgent"))
                     .createMediaSource(videouri)
